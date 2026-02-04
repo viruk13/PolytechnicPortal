@@ -10,14 +10,96 @@ function loadHome(){
 }
 
 // --------- COURSES ----------
+// --------- DEPARTMENTS ----------
+const departments = {
+  cs:`<div class="dept-layout cs">
+    <div class="card left">
+      <h2>Lecturers</h2>
+      <ol>
+        <li>Ranganath - B.E</li>
+        <li>Raghvendra - M.Tech</li>
+        <li>Tejashwini - M.C.A</li>
+        <li>Laxmi - M.Tech</li>
+        <li>Vijay Laxmi - B.E</li>
+      </ol>
+    </div>
+    <div class="card right">
+      <h2>HOD Information</h2>
+      <div class="hod-box">
+        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="HOD Photo">
+        <div class="info-row"><span>Name</span><strong>Basavaraj</strong></div>
+        <div class="info-row"><span>Designation</span><strong>HOD</strong></div>
+        <div class="info-row"><span>Contact</span><strong>7259374248</strong></div>
+        <div class="info-row"><span>City</span><strong>Kustagi</strong></div>
+      </div>
+    </div>
+  </div>`,
+
+  aet:`<div class="dept-layout aet">
+    <div class="card left">
+      <h2>Lecturers</h2>
+      <ol>
+        <li>Mahantesh M - B.E</li>
+        <li>Mantesh - M.Tech</li>
+        <li>Anuradha - M.C.A</li>
+        <li>Uday Kumar - B.E</li>
+      </ol>
+    </div>
+    <div class="card right">
+      <h2>HOD Information</h2>
+      <div class="hod-box">
+        <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="HOD Photo">
+        <div class="info-row"><span>Name</span><strong>Sandeep</strong></div>
+        <div class="info-row"><span>Designation</span><strong>HOD</strong></div>
+        <div class="info-row"><span>Contact</span><strong>8217440842</strong></div>
+        <div class="info-row"><span>City</span><strong>Lingsuru</strong></div>
+      </div>
+    </div>
+  </div>`,
+
+  eee:`<div class="dept-layout eee">
+    <div class="card left">
+      <h2>Lecturers</h2>
+      <ol>
+        <li>Veeresh - B.E</li>
+        <li>Shiva Shankar - M.Tech</li>
+        <li>Zora Anjum - M.C.A</li>
+        <li>Nikath - B.E</li>
+        <li>Mohammad Ali - M.Tech</li>
+      </ol>
+    </div>
+    <div class="card right">
+      <h2>HOD Information</h2>
+      <div class="hod-box">
+        <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="HOD Photo">
+        <div class="info-row"><span>Name</span><strong>Chandrashekr Sunkad</strong></div>
+        <div class="info-row"><span>Designation</span><strong>HOD</strong></div>
+        <div class="info-row"><span>Contact</span><strong>7019710649</strong></div>
+        <div class="info-row"><span>City</span><strong>Koppal</strong></div>
+      </div>
+    </div>
+  </div>`
+};
+
+// --------- LOAD COURSES ----------
 function loadCourses(){
   main.innerHTML = `<h1>Courses Offered</h1>
     <div class="course-buttons">
-      <button onclick="alert('CS Department')">Computer Science (CS)</button>
-      <button onclick="alert('AET Department')">Alternative Energy Technology (AET)</button>
-      <button onclick="alert('EEE Department')">Electrical & Electronics (EEE)</button>
-    </div>`;
+      <button onclick="showDept('cs')">Computer Science (CS)</button>
+      <button onclick="showDept('aet')">Alternative Energy Technology (AET)</button>
+      <button onclick="showDept('eee')">Electrical & Electronics (EEE)</button>
+    </div>
+    <div id="dept-container"></div>`;
 }
+
+// --------- SHOW DEPARTMENT ----------
+function showDept(dept){
+  const container = document.getElementById('dept-container');
+  container.innerHTML = departments[dept] || '<p>Department not found.</p>';
+  const layout = container.querySelector('.dept-layout');
+  setTimeout(()=> layout.classList.add('show'),50);
+}
+
 
 // --------- LOGIN ----------
 function loginPage(){
