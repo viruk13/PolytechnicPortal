@@ -25,8 +25,8 @@ function loadHome(){
     </div>
 
     <div class="stats">
-      <div class="stat-card"><h3>500+</h3><p>Students</p></div>
-      <div class="stat-card"><h3>10</h3><p>Departments</p></div>
+      <div class="stat-card"><h3>300</h3><p>Students</p></div>
+      <div class="stat-card"><h3>3</h3><p>Departments</p></div>
       <div class="stat-card"><h3>50+</h3><p>Faculty</p></div>
     </div>
 
