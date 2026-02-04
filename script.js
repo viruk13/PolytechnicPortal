@@ -18,6 +18,17 @@ function loadHome(){
     <div class="announcements">
       <h2>Latest Announcements</h2>
       <ul>
+        <li>New semestefunction loadHome(){
+  main.innerHTML = `
+    <div class="hero">
+      <h1>Government Polytechnic Gunnal</h1>
+      <p>Empowering students for a better future</p>
+      <button onclick="loadCourses()">Explore Courses</button>
+    </div>
+
+    <div class="announcements">
+      <h2>Latest Announcements</h2>
+      <ul>
         <li>New semester starts from 15th Feb 2026.</li>
         <li>Lab schedules updated for CS department.</li>
         <li>Apply for hostel before 10th Feb 2026.</li>
@@ -25,8 +36,8 @@ function loadHome(){
     </div>
 
     <div class="stats">
-      <div class="stat-card"><h3>300</h3><p>Students</p></div>
-      <div class="stat-card"><h3>3</h3><p>Departments</p></div>
+      <div class="stat-card"><h3>500+</h3><p>Students</p></div>
+      <div class="stat-card"><h3>10</h3><p>Departments</p></div>
       <div class="stat-card"><h3>50+</h3><p>Faculty</p></div>
     </div>
 
@@ -35,15 +46,64 @@ function loadHome(){
       <img src="https://images.unsplash.com/photo-1581090700227-1c7c4e3b06b7?auto=format&fit=crop&w=1500&q=80">
       <img src="https://images.unsplash.com/photo-1564866657313-38c1a1d0b3f1?auto=format&fit=crop&w=1500&q=80">
     </div>
+
+    <!-- Principal Message -->
+    <div class="message">
+      <h2>Principal’s Message</h2>
+      <p>
+        Welcome to Government Polytechnic Gunnal. Our mission is to provide
+        quality technical education and prepare students for successful careers.
+      </p>
+    </div>
+
+    <!-- Facilities -->
+    <div class="facilities">
+      <h2>Our Facilities</h2>
+      <div class="facility-grid">
+        <div>💻 Computer Labs</div>
+        <div>🔧 Mechanical Workshop</div>
+        <div>📚 Library</div>
+        <div>🏫 Smart Classrooms</div>
+        <div>🏀 Sports Ground</div>
+        <div>🏠 Hostel</div>
+      </div>
+    </div>
+
+    <!-- Departments Overview -->
+    <div class="departments-overview">
+      <h2>Departments</h2>
+      <div class="dept-cards">
+        <div class="dept-card">Computer Science</div>
+        <div class="dept-card">AET</div>
+        <div class="dept-card">EEE</div>
+      </div>
+    </div>
+
+    <!-- Gallery -->
+    <div class="gallery">
+      <h2>Campus Gallery</h2>
+      <div class="gallery-grid">
+        <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1">
+        <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b">
+        <img src="https://images.unsplash.com/photo-1498243691581-b145c3f54a5a">
+      </div>
+    </div>
+
+    <!-- Achievements -->
+    <div class="achievements">
+      <h2>Achievements</h2>
+      <p>Many of our students are placed in reputed companies every year.</p>
+    </div>
+
+    <!-- Notice Board -->
+    <div class="notice-board">
+      <marquee>Admissions Open | Scholarship Available | Exam Time Table Released</marquee>
+    </div>
   `;
+
   startCarousel();
 }
 
-// ---------------- CAROUSEL ----------------
-function startCarousel(){
-  const slides = document.querySelectorAll('.carousel img');
-  let index = 0;
-  setInterval(()=>{
     slides[index].classList.remove('active');
     index = (index + 1) % slides.length;
     slides[index].classList.add('active');
