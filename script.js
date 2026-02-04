@@ -1,6 +1,10 @@
-const main = document.getElementById('main-content');
+let main;
 const apiBase = "https://6982f0249c3efeb892a3c0ce.mockapi.io/PolytechnicPortal";
 
+window.onload = function () {
+  main = document.getElementById('main-content');
+  loadHome();
+};
 
 // ---------------- HOME ----------------
 function loadHome(){
@@ -20,6 +24,12 @@ function loadHome(){
       </ul>
     </div>
 
+    <div class="stats">
+      <div class="stat-card"><h3>500+</h3><p>Students</p></div>
+      <div class="stat-card"><h3>10</h3><p>Departments</p></div>
+      <div class="stat-card"><h3>50+</h3><p>Faculty</p></div>
+    </div>
+
     <div class="carousel">
       <img src="https://images.unsplash.com/photo-1596496057190-39a2f8d5c991?auto=format&fit=crop&w=1500&q=80" class="active">
       <img src="https://images.unsplash.com/photo-1581090700227-1c7c4e3b06b7?auto=format&fit=crop&w=1500&q=80">
@@ -28,7 +38,6 @@ function loadHome(){
   `;
   startCarousel();
 }
-
 
 // ---------------- CAROUSEL ----------------
 function startCarousel(){
@@ -41,79 +50,69 @@ function startCarousel(){
   }, 4000);
 }
 
-
-// ---------------- COURSES & DEPARTMENTS ----------------
-const departments = {
-  cs: `<h2>Computer Science Department</h2><p>Lecturers and HOD info here...</p>`,
-  aet:`<h2>AET Department</h2><p>Lecturers and HOD info here...</p>`,
-  eee:`<h2>EEE Department</h2><p>Lecturers and HOD info here...</p>`
-};
-
+// ---------------- COURSES ----------------
 function loadCourses(){
   main.innerHTML = `
     <h1>Courses Offered</h1>
-    <button onclick="showDept('cs')">CS</button>
-    <button onclick="showDept('aet')">AET</button>
-    <button onclick="showDept('eee')">EEE</button>
+    <div class="course-buttons">
+      <button onclick="showDept('cs')">Computer Science (CS)</button>
+      <button onclick="showDept('aet')">AET</button>
+      <button onclick="showDept('eee')">EEE</button>
+    </div>
     <div id="dept-container"></div>
   `;
 }
 
+// ---------------- DEPARTMENTS ----------------
+const departments = {
+  cs: `<div class="dept-layout cs">
+        <div class="card left">
+          <h2>Lecturers</h2>
+          <ol><li>Ranganath</li><li>Raghvendra</li></ol>
+        </div>
+        <div class="card right">
+          <h2>HOD Information</h2>
+          <div class="hod-box">
+            <img src="https://randomuser.me/api/portraits/men/32.jpg">
+            <div class="info-row"><span>Name</span><strong>Basavaraj</strong></div>
+          </div>
+        </div>
+      </div>`,
+  aet: `<div class="dept-layout aet"><div class="card left"><h2>AET Dept</h2></div></div>`,
+  eee: `<div class="dept-layout eee"><div class="card left"><h2>EEE Dept</h2></div></div>`
+};
+
 function showDept(dept){
-  document.getElementById('dept-container').innerHTML = departments[dept];
+  const container = document.getElementById('dept-container');
+  container.innerHTML = departments[dept];
+  setTimeout(()=> container.querySelector('.dept-layout').classList.add('show'),50);
 }
 
-
-// ---------------- LOGIN PAGE ----------------
+// ---------------- LOGIN ----------------
 function loginPage(){
   main.innerHTML = `
     <h1>Login</h1>
-    <div id="error-msg" style="color:red;"></div>
-    <input type="text" id="username" placeholder="Username"><br><br>
-    <input type="password" id="password" placeholder="Password"><br><br>
-    <button onclick="submitLogin()">Login</button>
+    <div class="login-form">
+      <div class="error-msg" id="error-msg"></div>
+      <input type="text" id="username" placeholder="Username">
+      <input type="password" id="password" placeholder="Password">
+      <button onclick="submitLogin()">Login</button>
+    </div>
   `;
 }
 
-
-// ---------------- MOCKAPI LOGIN ----------------
 async function submitLogin(){
-  const username = username.value.trim();
-  const password = password.value.trim();
+  const u = username.value.trim();
+  const p = password.value.trim();
 
   const res = await fetch(`${apiBase}/users`);
   const users = await res.json();
-
-  const user = users.find(u=>u.username===username && u.password===password);
+  const user = users.find(x=>x.username===u && x.password===p);
 
   if(user){
-    if(user.role==="admin") loadAdminDashboard();
-    else loadStudentDashboard(user.id);
+    alert("Login Success");
   }else{
-    document.getElementById('error-msg').textContent="Invalid login!";
+    document.getElementById('error-msg').style.display="block";
+    errorMsg.textContent="Invalid login!";
   }
 }
-
-
-// ---------------- ADMIN DASHBOARD ----------------
-function loadAdminDashboard(){
-  main.innerHTML = `<h2>Admin Dashboard</h2><p>Manage students here...</p>
-  <button onclick="loadHome()">Home</button>`;
-}
-
-
-// ---------------- STUDENT DASHBOARD ----------------
-async function loadStudentDashboard(id){
-  const res = await fetch(`${apiBase}/users/${id}`);
-  const student = await res.json();
-
-  main.innerHTML = `
-    <h2>Welcome ${student.name}</h2>
-    <p>Roll: ${student.roll}</p>
-    <button onclick="loadHome()">Home</button>
-  `;
-}
-
-
-// ---------------- INITIAL LOAD ----------------
-window.onload = loadHome;
