@@ -71,3 +71,30 @@ body, html{margin:0;padding:0;font-family:Arial,sans-serif;background:#f4f6f9;}
 .dash-card ul li{padding:6px 0;border-bottom:1px dashed #ccc;}
 .dash-card input, .dash-card select{width:100%;padding:6px;margin:6px 0 12px 0;border-radius:5px;border:1px solid #ccc;font-size:14px;}
 .dash-card button{width:100%;padding:8px;background:#0b5ed7;color:#fff;border:none;border-radius:5px;cursor:pointer;margin-bottom:8px;}
+/* ONE LINE FOOTER */
+.footer-one-line{
+  background:#0b5ed7;
+  color:#fff;
+  padding:12px 20px;
+}
+
+.footer-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:15px;
+  font-size:14px;
+}
+
+.footer-links a{
+  color:#fff;
+  margin-left:10px;
+  text-decoration:none;
+  font-weight:bold;
+}
+
+.footer-links a:hover{
+  text-decoration:underline;
+  color:#ffd700;
+}
