@@ -208,3 +208,56 @@ async function loadStudentDashboard(id){
 
 // ----------------- INITIAL LOAD ----------------
 loadHome();
+
+const main = document.getElementById('main-content');
+
+// Home Page Content
+function loadHome(){
+  main.innerHTML = `
+    <div class="hero">
+      <h1>Government Polytechnic Gunnal</h1>
+      <p>Empowering students for a better future</p>
+      <button onclick="loadCourses()">Explore Courses</button>
+    </div>
+
+    <div class="announcements">
+      <h2>Latest Announcements</h2>
+      <ul>
+        <li>New semester starts from 15th Feb 2026.</li>
+        <li>Lab schedules updated for CS department.</li>
+        <li>Apply for hostel before 10th Feb 2026.</li>
+      </ul>
+    </div>
+
+    <div class="stats">
+      <div class="stat-card"><h3>500+</h3><p>Students</p></div>
+      <div class="stat-card"><h3>10</h3><p>Departments</p></div>
+      <div class="stat-card"><h3>50+</h3><p>Faculty Members</p></div>
+    </div>
+
+    <div class="carousel">
+      <img src="https://images.unsplash.com/photo-1596496057190-39a2f8d5c991?auto=format&fit=crop&w=1500&q=80" class="active" alt="Campus 1">
+      <img src="https://images.unsplash.com/photo-1581090700227-1c7c4e3b06b7?auto=format&fit=crop&w=1500&q=80" alt="Campus 2">
+      <img src="https://images.unsplash.com/photo-1564866657313-38c1a1d0b3f1?auto=format&fit=crop&w=1500&q=80" alt="Campus 3">
+    </div>
+  `;
+  startCarousel();
+}
+
+// Simple Carousel Function
+function startCarousel(){
+  const slides = document.querySelectorAll('.carousel img');
+  let index = 0;
+  setInterval(()=>{
+    slides[index].classList.remove('active');
+    index = (index + 1) % slides.length;
+    slides[index].classList.add('active');
+  }, 4000);
+}
+
+// Placeholder functions
+function loadCourses(){ alert("Courses page here!"); }
+function loginPage(){ alert("Login page here!"); }
+
+// Load Home on Page Load
+window.onload = loadHome;
